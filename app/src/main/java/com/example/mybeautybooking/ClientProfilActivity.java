@@ -54,7 +54,8 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
     private static final String TAG_SEARCH = "search";
     private static final String TAG_SETTINGS = "settings";
     private static final String TAG_LOGOUT = "logout";
-    public static String CURRENT_TAG = TAG_LOGOUT;
+    private static final String TAG_HOME = "HOME";
+    public static String CURRENT_TAG = TAG_HOME;
 
     // toolbar titles respected to selected nav menu item
     private String[] activityTitles;
@@ -170,10 +171,10 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
 
     private Fragment getHomeFragment() {
         switch (navItemIndex) {
-//            case 0:
-//                // home
-//                HomeFragment homeFragment = new HomeFragment();
-//                return homeFragment;
+            case 0:
+                // home
+                HomeFragment homeFragment = new HomeFragment();
+                return homeFragment;
 //            case 1:
 //                // settings fragment
 //                SettingsFragment settingsFragment = new SettingsFragment();
@@ -211,10 +212,10 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
-                    case R.id.nav_search:
-                        startActivity(new Intent(com.example.mybeautybooking.ClientProfilActivity.this, VentePrivée.class));
-                        drawer.closeDrawers();
-                        return true;
+                        case R.id.nav_search:
+                        navItemIndex = 0;
+                        CURRENT_TAG = TAG_HOME;
+                        break;
 
 
                     case R.id.nav_logout:

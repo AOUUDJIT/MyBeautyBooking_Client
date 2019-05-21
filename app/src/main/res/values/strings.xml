@@ -47,6 +47,7 @@
     <string name="nav_notifications">Notifications</string>
     <string name="nav_settings">Paramètres</string>
     <string name="nav_search">Recherche</string>
+    <string name="nav_vente">Vente Privée</string>
     <string name="nav_profile">Mon Compte</string>
     <string name="nav_delete">Supprimer mon compte</string>
     <string name="nav_logout">Déconnexion</string>
