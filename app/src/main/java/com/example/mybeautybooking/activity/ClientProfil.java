@@ -54,7 +54,7 @@ public class ClientProfil extends AppCompatActivity {
     EditText cityText_Client;
 
 
-    Button doneButton,deleteButton;
+    Button doneButton,logoutButton;
 
     //RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
     ClientProfilActivity clientProfilActivity;
@@ -103,125 +103,142 @@ public class ClientProfil extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
 
-        clientProfilActivity = new ClientProfilActivity();
-        deleteButton = (Button)findViewById(R.id.btn_delete);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
+
+        logoutButton = (Button)findViewById(R.id.btn_logout);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //confirmDelete();
-                confirmDelete();
+                logout();
             }
         });
+        
+        clientProfilActivity = new ClientProfilActivity();
+//        deleteButton = (Button)findViewById(R.id.btn_delete);
+//        deleteButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                //confirmDelete();
+//                confirmDelete();
+//            }
+//        });
 
     }
 
 
 
-    private void confirmDelete() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ClientProfil.this);
-        alertDialogBuilder.setMessage("Êtes-vous sûr de vouloir supprimer votre compte?");
-        alertDialogBuilder.setPositiveButton("Supprimer",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
+//    private void confirmDelete() {
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ClientProfil.this);
+//        alertDialogBuilder.setMessage("Êtes-vous sûr de vouloir supprimer votre compte?");
+//        alertDialogBuilder.setPositiveButton("Supprimer",
+//                new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//
+//                        //If the user confirms deletion, execute DeleteMovieAsyncTask
+//                        delete();
+//
+//                    }
+//                });
+//
+//        alertDialogBuilder.setNegativeButton("Annuler", null);
+//
+//        AlertDialog alertDialog = alertDialogBuilder.create();
+//        alertDialog.show();
+//    }
 
-                        //If the user confirms deletion, execute DeleteMovieAsyncTask
-                        delete();
 
-                    }
-                });
 
-        alertDialogBuilder.setNegativeButton("Annuler", null);
 
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+
+//    public void delete () {
+//
+//        progressDialog2 = new ProgressDialog(ClientProfil.this);
+//        progressDialog2.setMessage(" Suppression en cours. Veuillez patienter...");
+//        progressDialog2.setIndeterminate(false);
+//        progressDialog2.setCancelable(false);
+//        progressDialog2.show();
+//
+//        request = new StringRequest(Request.Method.POST,URL, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    // create json object with php reponse
+//                    JSONObject jsonObject = new JSONObject(response);
+//
+//                    /*verification jsonphp reponse*/
+//                    if (jsonObject.names().get(0).equals("success")) {
+//
+//                        new android.os.Handler().postDelayed(
+//                                new Runnable() {
+//                                    public void run() {
+//                                        // onLoginSuccess
+//                                        destroy();
+//                                        finish();
+////                                        progressBar.setVisibility(View.INVISIBLE);
+//                                        //progressDialog2.dismiss();
+//                                    }
+//                                }, 100);
+//                    }else {destroy();}
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//                if (error instanceof TimeoutError) {
+//                    Toast.makeText(getApplicationContext(), "TimeoutError", Toast.LENGTH_LONG).show();
+//                }
+//
+//                if (error instanceof NoConnectionError) {
+//                    Toast.makeText(getApplicationContext(), "NoConnectionError", Toast.LENGTH_LONG).show();
+//                }
+//
+//                if (error instanceof AuthFailureError) {
+//                    Toast.makeText(getApplicationContext(), "AuthFailureError", Toast.LENGTH_LONG).show();
+//                } else if (error instanceof ServerError) {
+//                    Toast.makeText(getApplicationContext(), "ServerError", Toast.LENGTH_LONG).show();
+//                } else if (error instanceof NetworkError) {
+//                    Toast.makeText(getApplicationContext(), "NetworkError", Toast.LENGTH_LONG).show();
+//                } else if (error instanceof ParseError) {
+//                    Toast.makeText(getApplicationContext(), "ParseError", Toast.LENGTH_LONG).show();
+//                }
+//
+//            }
+//        }) {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                HashMap<String, String> hashMap = new HashMap<String, String>();
+//                hashMap.put("id", SharedPrefManager.getInstance(getApplicationContext()).getKeyUserID().toString());
+//
+//                return hashMap;
+//            }
+//        };
+//
+//        requestQueue.add(request);
+//
+//
+//    }
+//
+//     void destroy(){
+//        if ( progressDialog2!=null && progressDialog2.isShowing() ){
+//            progressDialog2.cancel();
+//        }
+//    }
+
+
+    void logout(){
+        finish();
+        overridePendingTransition(0, 0);
+
+        Toast.makeText(getBaseContext(), R.string.logout, Toast.LENGTH_LONG).show();
     }
-
-
-
-
-
-    public void delete () {
-
-        progressDialog2 = new ProgressDialog(ClientProfil.this);
-        progressDialog2.setMessage(" Suppression en cours. Veuillez patienter...");
-        progressDialog2.setIndeterminate(false);
-        progressDialog2.setCancelable(false);
-        progressDialog2.show();
-
-        request = new StringRequest(Request.Method.POST,URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    // create json object with php reponse
-                    JSONObject jsonObject = new JSONObject(response);
-
-                    /*verification jsonphp reponse*/
-                    if (jsonObject.names().get(0).equals("success")) {
-
-                        new android.os.Handler().postDelayed(
-                                new Runnable() {
-                                    public void run() {
-                                        // onLoginSuccess
-                                        destroy();
-                                        finish();
-//                                        progressBar.setVisibility(View.INVISIBLE);
-                                        //progressDialog2.dismiss();
-                                    }
-                                }, 100);
-                    }else {destroy();}
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                if (error instanceof TimeoutError) {
-                    Toast.makeText(getApplicationContext(), "TimeoutError", Toast.LENGTH_LONG).show();
-                }
-
-                if (error instanceof NoConnectionError) {
-                    Toast.makeText(getApplicationContext(), "NoConnectionError", Toast.LENGTH_LONG).show();
-                }
-
-                if (error instanceof AuthFailureError) {
-                    Toast.makeText(getApplicationContext(), "AuthFailureError", Toast.LENGTH_LONG).show();
-                } else if (error instanceof ServerError) {
-                    Toast.makeText(getApplicationContext(), "ServerError", Toast.LENGTH_LONG).show();
-                } else if (error instanceof NetworkError) {
-                    Toast.makeText(getApplicationContext(), "NetworkError", Toast.LENGTH_LONG).show();
-                } else if (error instanceof ParseError) {
-                    Toast.makeText(getApplicationContext(), "ParseError", Toast.LENGTH_LONG).show();
-                }
-
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> hashMap = new HashMap<String, String>();
-                hashMap.put("id", SharedPrefManager.getInstance(getApplicationContext()).getKeyUserID().toString());
-
-                return hashMap;
-            }
-        };
-
-        requestQueue.add(request);
-
-
-    }
-
-     void destroy(){
-        if ( progressDialog2!=null && progressDialog2.isShowing() ){
-            progressDialog2.cancel();
-        }
-    }
-
 
      void update () {
          if(validate()){

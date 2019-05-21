@@ -21,6 +21,7 @@
         <activity
             android:name=".ClientProfilActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.SettingsActivity" />
         <activity android:name=".ClientSignupActivity" />
         <activity android:name=".ClientLoginActivity" />
         <activity android:name=".Login_pro" />

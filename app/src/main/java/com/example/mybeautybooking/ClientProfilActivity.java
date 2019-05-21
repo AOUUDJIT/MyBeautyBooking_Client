@@ -39,6 +39,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.mybeautybooking.activity.AboutUsActivity;
 import com.example.mybeautybooking.activity.ClientProfil;
 import com.example.mybeautybooking.activity.PrivacyPolicyActivity;
+import com.example.mybeautybooking.activity.SettingsActivity;
 import com.example.mybeautybooking.fragment.HomeFragment;
 import com.example.mybeautybooking.fragment.ProfilFragment;
 import com.example.mybeautybooking.fragment.SettingsFragment;
@@ -67,10 +68,10 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
     public static int navItemIndex = 0;
 
     // tags used to attach the fragments
-    private static final String TAG_HOME = "home";
+    private static final String TAG_SEARCH = "search";
     private static final String TAG_SETTINGS = "settings";
-    private static final String TAG_PROFIL = "profil";
-    public static String CURRENT_TAG = TAG_HOME;
+    private static final String TAG_LOGOUT = "logout";
+    public static String CURRENT_TAG = TAG_LOGOUT;
 
     // toolbar titles respected to selected nav menu item
     private String[] activityTitles;
@@ -114,7 +115,7 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
 
         if (savedInstanceState == null) {
             navItemIndex = 0;
-            CURRENT_TAG = TAG_HOME;
+            CURRENT_TAG = TAG_SEARCH;
             loadHomeFragment();
         }
     }
@@ -190,15 +191,15 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
                 // home
                 HomeFragment homeFragment = new HomeFragment();
                 return homeFragment;
-            case 1:
-                // settings fragment
-                SettingsFragment settingsFragment = new SettingsFragment();
-                return settingsFragment;
+//            case 1:
+//                // settings fragment
+//                SettingsFragment settingsFragment = new SettingsFragment();
+//                return settingsFragment;
 //            case 2:
 //                // profil fragment
 //                ProfilFragment profilFragment = new ProfilFragment();
 //                return profilFragment;
-            case 3:
+            case 1:
                 finish();
                 overridePendingTransition(0, 0);
 
@@ -227,22 +228,26 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
-                    case R.id.nav_home:
+                    case R.id.nav_search:
                         navItemIndex = 0;
-                        CURRENT_TAG = TAG_HOME;
+                        CURRENT_TAG = TAG_SEARCH;
                         break;
-                    case R.id.nav_settings:
+
+
+                    case R.id.nav_logout:
                         navItemIndex = 1;
-                        CURRENT_TAG = TAG_SETTINGS;
+                        CURRENT_TAG = TAG_LOGOUT;
                         break;
+
+                    case R.id.nav_settings:
+                        startActivity(new Intent(com.example.mybeautybooking.ClientProfilActivity.this, SettingsActivity.class));
+                        drawer.closeDrawers();
+                        return true;
+
                     case R.id.nav_profile:
                         startActivity(new Intent(com.example.mybeautybooking.ClientProfilActivity.this, ClientProfil.class));
                         drawer.closeDrawers();
                         return true;
-                    case R.id.nav_logout:
-                        navItemIndex = 3;
-                        CURRENT_TAG = TAG_PROFIL;
-                        break;
 
                     case R.id.nav_about_us:
                         // launch new intent instead of loading fragment
@@ -311,7 +316,7 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
             // rather than home
             if (navItemIndex != 0) {
                 navItemIndex = 0;
-                CURRENT_TAG = TAG_HOME;
+                CURRENT_TAG = TAG_SEARCH;
                 loadHomeFragment();
                 return;
             }
