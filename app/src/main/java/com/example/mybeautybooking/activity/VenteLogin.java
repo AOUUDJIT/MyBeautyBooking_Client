@@ -1,5 +1,38 @@
-package com.example.mybeautybooking;
+package com.example.mybeautybooking.activity;
 
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.mybeautybooking.ClientSignupActivity;
+import com.example.mybeautybooking.R;
+import com.example.mybeautybooking.SharedPrefManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -46,7 +79,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ClientLoginActivity extends AppCompatActivity {
+public class VenteLogin extends AppCompatActivity {
+
     private static final String TAG = "ClientLoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     public ArrayList<String> arrayList = new ArrayList<>();
@@ -54,7 +88,7 @@ public class ClientLoginActivity extends AppCompatActivity {
 
     EditText emailText_Client;
     EditText passwordText_Client;
-    Button  loginButton_Client;
+    Button loginButton_Client;
     TextView signupLink_Client;
 
     private RequestQueue requestQueue;
@@ -64,7 +98,7 @@ public class ClientLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_login);
+        setContentView(R.layout.activity_vente_login);
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
         progressBar.setVisibility(View.INVISIBLE);
@@ -264,7 +298,7 @@ public class ClientLoginActivity extends AppCompatActivity {
     /*access to client profil*/
     public void onLoginSuccess() {
         loginButton_Client.setEnabled(true);
-        Intent intent = new Intent(ClientLoginActivity.this, ClientProfilActivity.class);
+        Intent intent = new Intent(com.example.mybeautybooking.activity.VenteLogin.this, VentePrivée.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         finish();

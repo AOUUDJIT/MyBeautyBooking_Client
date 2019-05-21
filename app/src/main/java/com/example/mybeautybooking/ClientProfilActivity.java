@@ -25,30 +25,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkError;
-import com.android.volley.NoConnectionError;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.mybeautybooking.activity.AboutUsActivity;
 import com.example.mybeautybooking.activity.ClientProfil;
-import com.example.mybeautybooking.activity.PrivacyPolicyActivity;
+import com.example.mybeautybooking.activity.VentePrivée;
 import com.example.mybeautybooking.activity.SettingsActivity;
 import com.example.mybeautybooking.fragment.HomeFragment;
 import com.example.mybeautybooking.fragment.ProfilFragment;
-import com.example.mybeautybooking.fragment.SettingsFragment;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class ClientProfilActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener, ProfilFragment.OnFragmentInteractionListener {
@@ -187,10 +170,10 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
 
     private Fragment getHomeFragment() {
         switch (navItemIndex) {
-            case 0:
-                // home
-                HomeFragment homeFragment = new HomeFragment();
-                return homeFragment;
+//            case 0:
+//                // home
+//                HomeFragment homeFragment = new HomeFragment();
+//                return homeFragment;
 //            case 1:
 //                // settings fragment
 //                SettingsFragment settingsFragment = new SettingsFragment();
@@ -229,9 +212,9 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.nav_search:
-                        navItemIndex = 0;
-                        CURRENT_TAG = TAG_SEARCH;
-                        break;
+                        startActivity(new Intent(com.example.mybeautybooking.ClientProfilActivity.this, VentePrivée.class));
+                        drawer.closeDrawers();
+                        return true;
 
 
                     case R.id.nav_logout:
@@ -249,18 +232,10 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
                         drawer.closeDrawers();
                         return true;
 
-                    case R.id.nav_about_us:
-                        // launch new intent instead of loading fragment
-                        startActivity(new Intent(com.example.mybeautybooking.ClientProfilActivity.this, AboutUsActivity.class));
-                        drawer.closeDrawers();
-                        return true;
-                    case R.id.nav_privacy_policy:
-                        // launch new intent instead of loading fragment
-                        startActivity(new Intent(com.example.mybeautybooking.ClientProfilActivity.this, PrivacyPolicyActivity.class));
-                        drawer.closeDrawers();
-                        return true;
                     default:
-                        navItemIndex = 0;
+                        startActivity(new Intent(com.example.mybeautybooking.ClientProfilActivity.this, VentePrivée.class));
+                        drawer.closeDrawers();
+                        return true;
                 }
 
                 //Checking if the item is in checked state or not, if not make it in checked state

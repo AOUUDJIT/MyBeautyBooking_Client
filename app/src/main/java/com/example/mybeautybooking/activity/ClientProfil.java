@@ -3,6 +3,7 @@ package com.example.mybeautybooking.activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -26,7 +27,9 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mybeautybooking.ClientLoginActivity;
 import com.example.mybeautybooking.ClientProfilActivity;
+import com.example.mybeautybooking.HomePage;
 import com.example.mybeautybooking.R;
 import com.example.mybeautybooking.SharedPrefManager;
 import com.example.mybeautybooking.fragment.ProfilFragment;
@@ -112,7 +115,7 @@ public class ClientProfil extends AppCompatActivity {
                 logout();
             }
         });
-        
+
         clientProfilActivity = new ClientProfilActivity();
 //        deleteButton = (Button)findViewById(R.id.btn_delete);
 //        deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -236,6 +239,8 @@ public class ClientProfil extends AppCompatActivity {
     void logout(){
         finish();
         overridePendingTransition(0, 0);
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
 
         Toast.makeText(getBaseContext(), R.string.logout, Toast.LENGTH_LONG).show();
     }

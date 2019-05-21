@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mybeautybooking.activity.RepotoireBeautyActivity;
+import com.example.mybeautybooking.activity.VentePrivée;
 import com.igalata.bubblepicker.BubblePickerListener;
 import com.igalata.bubblepicker.model.PickerItem;
 import com.igalata.bubblepicker.rendering.BubblePicker;
@@ -64,10 +66,7 @@ Button  vente,beaute;
             }
         });
 
-        vente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //faire des actions aux boutons et textView lors du click
+
                 vente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -76,6 +75,13 @@ Button  vente,beaute;
                         startActivity(intent);
                     }
                 });
+
+        beaute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(HomePage.this, RepotoireBeautyActivity.class);
+                startActivity(intent);
             }
         });
 

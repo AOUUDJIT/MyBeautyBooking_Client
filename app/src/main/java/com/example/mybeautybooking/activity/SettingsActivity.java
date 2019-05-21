@@ -3,6 +3,7 @@ package com.example.mybeautybooking.activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.mybeautybooking.ClientProfilActivity;
+import com.example.mybeautybooking.HomePage;
 import com.example.mybeautybooking.R;
 import com.example.mybeautybooking.SharedPrefManager;
 
@@ -35,7 +37,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
     ProgressDialog progressDialog2;
-    Button deleteButton;
+    Button deleteButton,aboutUsButton, privacyButton;
 
     //RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
     ClientProfilActivity clientProfilActivity;
@@ -60,6 +62,43 @@ public class SettingsActivity extends AppCompatActivity {
                 confirmDelete();
             }
         });
+
+        aboutUsButton= (Button)findViewById(R.id.btn_about_us);
+        aboutUsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                redirecte (1);
+
+            }
+        });
+
+
+        privacyButton= (Button)findViewById(R.id.btn_privacy_policy);
+        privacyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                redirecte (2);
+
+
+            }
+        });
+
+
+    }
+
+    void redirecte (Integer var){
+
+        if (var==1){
+
+            Intent intent = new Intent(this, AboutUsActivity.class);
+            startActivity(intent);
+        }else{
+
+            Intent intent = new Intent(this, PrivacyPolicyActivity.class);
+            startActivity(intent);
+        }
+
+
     }
 
     private void confirmDelete() {
